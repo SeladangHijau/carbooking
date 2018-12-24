@@ -17,6 +17,7 @@ class CreateDriversTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('tel');
+            $table->string('location');
             $table->timestamps();
         });
     }
