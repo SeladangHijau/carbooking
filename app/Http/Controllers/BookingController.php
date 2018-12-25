@@ -4,29 +4,70 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Driver;
+use App\Booking;
+use App\User;
+
 class BookingController extends Controller
 {
-    public function create() {
-        return 'Create page';
+    public function index() {
+        return view('index')->with([
+            'drivers' => Driver::getAllDriver()
+        ]);
     }
 
-    public function edit() {
-        return 'Edit page';
+    public function bookingListing() {
+        return view('booking/listing')->with([
+            'bookings' => Booking::getBookingListing()
+        ]);
     }
 
-    public function delete() {
-        return 'Delete page';
+    public function createBooking() {
+        return view('booking/create');
     }
 
-    public function findDriver() {
-        return 'Find driver page';
+    public function create(Request $request) {
+        $user = [
+            'name' => $request['user_name'],
+            'tel' => $request['user_tel'],
+            'email' => $request['user_email'],
+        ];
+        $driver = [
+            'driver_id' => $request['driver_id']
+        ];
+        $booking = [
+            'point_a' => $request['booking_pointA'],
+            'point_b' => $request['booking_pointB']
+        ];
+
+        Booking::saveBooking($user, $driver, $booking);
+
+        return redirect('/booking');
     }
 
-    public function calcBooking() {
-        return 'Calculate booking page';
+    public function edit(Request $request) {
+        $bookingId = $request['id'];
+        $booking = [
+            'id' => $bookingId,
+            'point_a' => $request['location_from'],
+            'point_b' => $request['location_to']
+        ];
+
+        Booking::editBooking($booking);
+        
+        return redirect('/booking');
+    }
+    
+    public function delete(Request $request) {
+        $booking = [ 'id' => $request['id'] ];
+        Booking::deleteBooking($booking);
+        
+        return redirect('/booking');
     }
 
-    public function book() {
-        return 'Book page';
+    public function getBookingInfo(Request $request) {
+        $bookingId = $request['id'];
+
+        return response()->json(Booking::getBookingInfo($bookingId));
     }
 }

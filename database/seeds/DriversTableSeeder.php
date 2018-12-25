@@ -16,8 +16,7 @@ class DriversTableSeeder extends Seeder
 
         $driver = App\Driver::create([
             'name' => $faker->name,
-            'tel' => $faker->randomDigit,
-            'location' => str_random(10)
+            'tel' => $faker->randomDigit
         ]);
 
         App\Car::create([

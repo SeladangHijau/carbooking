@@ -11,17 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'BookingController@index');
 
 Route::get('/driver', 'DriverController@index');
-Route::get('/driver/createDriver', 'DriverController@createDriver');
+Route::get('/driver/createDriverPage', 'DriverController@createDriverPage');
 Route::get('/driver/getDriverInfo', 'DriverController@getDriverInfo');
 
+Route::get('/booking', 'BookingController@bookingListing');
 Route::get('/booking/createBooking', 'BookingController@createBooking');
-Route::get('/booking/editBooking', 'BookingController@editBooking');
-Route::get('/booking/deleteBooking', 'BookingController@deleteBooking');
+Route::get('/booking/getBookingInfo', 'BookingController@getBookingInfo');
 
 
 Route::post('/driver/create', 'DriverController@create');

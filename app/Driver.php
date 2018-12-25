@@ -6,40 +6,40 @@ use Illuminate\Database\Eloquent\Model;
 
 class Driver extends Model
 {
-    protected $fillable = [ 'name', 'tel', 'location' ];
+    protected $fillable = [ 'name', 'tel' ];
 
-    public function saveDriver(Driver $driver, Car $car) {
+    public static function saveDriver($driver, $car) {
         $driver = Driver::create([
-            'name' => $driver->name,
-            'tel' => $driver->tel,
-            'location' => $driver->location
+            'name' => $driver['name'],
+            'tel' => $driver['tel']
         ]);
         Car::create([
-            'driver_id' => $driver->id,
-            'model' => $car->model,
-            'color' => $car->color,
-            'plate_no' => $car->plate_no
+            'driver_id' => $driver['id'],
+            'model' => $car['model'],
+            'color' => $car['color'],
+            'plate_no' => $car['plate_no']
         ]);
+
+        return $driver;
     }
 
-    public function editDriver(Driver $driver, Car $car) {
-        $driverId = $driver->id;
+    public static function editDriver($driver, $car) {
+        $driverId = $driver['id'];
 
         $tempDriver = Driver::find($driverId);
-        $tempDriver->name = $driver->name;
-        $tempDriver->tel = $driver->tel;
-        $tempDriver->location = $driver->location;
+        $tempDriver->name = $driver['name'];
+        $tempDriver->tel = $driver['tel'];
         $tempDriver->save();
 
         $tempCar = Car::where('driver_id', $driverId)->first();
-        $tempCar->model = $car->model;
-        $tempCar->color = $car->color;
-        $tempCar->plate_no = $car->plate_no;
+        $tempCar->model = $car['model'];
+        $tempCar->color = $car['color'];
+        $tempCar->plate_no = $car['plate_no'];
         $tempCar->save();
     }
 
-    public function deleteDriver(Driver $driver) {
-        $driverId = $driver->id;
+    public static function deleteDriver($driver) {
+        $driverId = $driver['id'];
 
         $car = Car::where('driver_id', $driverId)->first();
         $car->delete();
@@ -48,14 +48,29 @@ class Driver extends Model
         $driver->delete();
     }
 
-    public function getDriverInfo($driverId) {
+    public static function getAllDriver() {
+        return Driver::all();
+    }
+    public static function getDriverListing() {
+        $drivers = [];
+
+        $drivers = Driver::all();
+        foreach($drivers as $driver) {
+            $car = Car::where('driver_id', $driver->id)->first();
+            $driver['car_model'] = $car['model'];
+            $driver['car_color'] = $car['color'];
+            $driver['car_plate_no'] = $car['plate_no'];
+        }
+
+        return $drivers;
+    }
+    public static function getDriverCarInfo($driverId) {
         $driver = Driver::find($driverId);
         $car = Car::where('driver_id', $driverId)->first();
 
         $driverInfo = [
             'name' => $driver->name,
-            'tel' => $driver->tel,
-            'location' => $driver->location
+            'tel' => $driver->tel
         ];
         $carInfo = [
             'model' => $car->model,
