@@ -51,6 +51,24 @@ class Driver extends Model
     public static function getAllDriver() {
         return Driver::all();
     }
+
+    public static function getAllDriverCar() {
+        $driverCar = [];
+
+        $drivers = Driver::all();
+        foreach($drivers as $driver) {
+            $car = Car::where('driver_id', $driver->id)->first();
+
+            $driverCar[] = [
+                'driver_id' => $driver->id,
+                'driver_name' => $driver->name,
+                'car_model' => $car->model
+            ];
+        }
+
+        return $driverCar;
+    }
+
     public static function getDriverListing() {
         $drivers = [];
 

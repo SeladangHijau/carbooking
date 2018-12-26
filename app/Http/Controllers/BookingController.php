@@ -12,7 +12,7 @@ class BookingController extends Controller
 {
     public function index() {
         return view('index')->with([
-            'drivers' => Driver::getAllDriver()
+            'drivers' => Driver::getAllDriverCar()
         ]);
     }
 

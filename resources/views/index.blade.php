@@ -95,7 +95,7 @@
                 <div class="modal-body">
                     @foreach ($drivers as $driver)
                         <div class="form-group">
-                            <button class="btn btn-success form-control" onclick="registerUser({!! $driver->id !!})">{!! $driver->name !!}</button>
+                            <button class="btn btn-success form-control" onclick="registerUser({!! $driver['driver_id'] !!})">{!! $driver['driver_name'] !!} ({!! $driver['car_model'] !!})</button>
                         </div>
                     @endforeach
                 </div>
