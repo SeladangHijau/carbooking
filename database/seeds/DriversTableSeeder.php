@@ -12,18 +12,40 @@ class DriversTableSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker::create();
-
         $driver = App\Driver::create([
-            'name' => $faker->name,
-            'tel' => $faker->randomDigit
+            'name' => 'Nadzmi',
+            'tel' => '+6011-10849181'
         ]);
 
         App\Car::create([
             'driver_id' => $driver->id,
-            'model' => $faker->domainName,
-            'color' => str_random(10),
-            'plate_no' => str_random(10)
+            'model' => 'Perodua Myvi',
+            'color' => 'Green',
+            'plate_no' => 'KDH 1726'
+        ]);
+
+        $driver = App\Driver::create([
+            'name' => 'Idzham',
+            'tel' => '+6011-92837284'
+        ]);
+
+        App\Car::create([
+            'driver_id' => $driver->id,
+            'model' => 'Proton Iriz',
+            'color' => 'Red',
+            'plate_no' => 'VAC 8737'
+        ]);
+
+        $driver = App\Driver::create([
+            'name' => 'Imran',
+            'tel' => '+6011-74839402'
+        ]);
+
+        App\Car::create([
+            'driver_id' => $driver->id,
+            'model' => 'Honda Civic',
+            'color' => 'Gray',
+            'plate_no' => 'BMB 2716'
         ]);
     }
 }
