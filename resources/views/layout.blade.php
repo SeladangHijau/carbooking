@@ -34,9 +34,11 @@
             .content {
                 padding-top: 30px;
                 padding-bottom: 30px;
+                padding-left: 10%;
+                padding-right: 10%;
 
-                margin-left: 100px;
-                margin-right: 100px;
+                margin-left: 10%;
+                margin-right: 10%;
 
                 border-radius: 10px;
                 background-color: rgba(255, 255, 255, 0.8);

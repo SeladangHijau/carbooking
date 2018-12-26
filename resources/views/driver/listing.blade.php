@@ -3,48 +3,49 @@
 @section('content')
     <div class="content">
         <div class="row">
-            <div class="offset-2 col-8">
-                <div class="jumbotron">
-                    <h3>List of Available Drivers</h3>
+            <div class="offset-md-2 col-md-8 text-center">
+                <h3>List of Available Drivers</h3>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="offset-md-4 col-md-4 text-center">
+                <div class="form-group">
+                    <a href={!! url('/driver/createDriverPage') !!} class="form-control btn btn-primary">New Driver</a>
                 </div>
             </div>
         </div>
-    
+
         <div class="row">
-            <div class="offset-2 col-8">
-                <div class="row">
-                    <div class="offset-4 col-4">
-                        <div class="form-group">
-                            <a href={!! url('/driver/createDriverPage') !!} class="form-control btn btn-primary">Register New Driver</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <table class="table">
-                            <thead class="thead-dark">
+            <div class="col-md-12">
+                <div class="table-responsive-sm">
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Driver Name</th>
+                                <th scope="col">Car Model</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($drivers as $key => $driver)
                                 <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Driver Name</th>
-                                    <th scope="col">Car Model</th>
-                                    <th scope="col">Action</th>
+                                    <th scope="row">{!! $key + 1 !!}</th>
+                                    <td>{!! $driver->name !!}</td>
+                                    <td>{!! $driver->car_model !!}</td>
+                                    <td>
+                                        <div class="form-group">
+                                            <button class="btn btn-success form-control" onclick="editDriver({!! $driver->id !!})">Edit</button>
+                                        </div>
+                                        <div class="form-group">
+                                            <button class="btn btn-danger form-control" onclick="deleteDriver({!! $driver->id !!})">Delete</button>
+                                        </div>
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($drivers as $key => $driver)
-                                    <tr>
-                                        <th scope="row">{!! $key + 1 !!}</th>
-                                        <td>{!! $driver->name !!}</td>
-                                        <td>{!! $driver->car_model !!}</td>
-                                        <td>
-                                            <button class="btn btn-success" onclick="editDriver({!! $driver->id !!})">Edit</button>
-                                            <button class="btn btn-danger" onclick="deleteDriver({!! $driver->id !!})">Delete</button>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </ul>
-                    </div>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

@@ -3,15 +3,13 @@
 @section('content')
     <div class="content">
         <div class="row">
-            <div class="offset-2 col-8">
-                <div class="jumbotron">
-                    <h3>Register a New Driver</h3>
-                </div>
+            <div class="offset-md-2 col-md-8 text-center">
+                <h3>Register a New Driver</h3>
             </div>
         </div>
     
         <div class="row">
-            <div class="offset-md-4 col-md-4">
+            <div class="offset-md-2 col-md-8">
                 <form class="cmxForm" id="createDriverForm" action={!! url("/driver/create") !!} method="POST">
                     @csrf
                     <div class="form-group">
