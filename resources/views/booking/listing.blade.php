@@ -1,53 +1,55 @@
 @extends('../layout')
 
 @section('content')
-    <div class="row">
-        <div class="offset-2 col-8">
-            <div class="jumbotron">
-                <h3>List of Bookings</h3>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="offset-2 col-8">
-            <div class="row">
-                <div class="offset-4 col-4">
-                    <div class="form-group">
-                        <a href={!! url('/') !!} class="form-control btn btn-primary">New Booking</a>
-                    </div>
+    <div class="content">
+        <div class="row">
+            <div class="offset-2 col-8">
+                <div class="jumbotron">
+                    <h3>List of Bookings</h3>
                 </div>
             </div>
-
-            <div class="row">
-                <div class="col-12">
-                    <table class="table">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">User Name</th>
-                                <th scope="col">Driver Name</th>
-                                <th scope="col">From</th>
-                                <th scope="col">To</th>
-                                <th scope="col">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($bookings as $key => $booking)
+        </div>
+    
+        <div class="row">
+            <div class="offset-2 col-8">
+                <div class="row">
+                    <div class="offset-4 col-4">
+                        <div class="form-group">
+                            <a href={!! url('/') !!} class="form-control btn btn-primary">New Booking</a>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="row">
+                    <div class="col-12">
+                        <table class="table">
+                            <thead class="thead-dark">
                                 <tr>
-                                    <th scope="row">{!! ($key + 1) !!}</th>
-                                    <td>{!! $booking['user_name'] !!}</td>
-                                    <td>{!! $booking['driver_name'] !!}</td>
-                                    <td>{!! $booking['location_from'] !!}</td>
-                                    <td>{!! $booking['location_to'] !!}</td>
-                                    <td>
-                                        <button class="btn btn-success" onclick="editBooking({!! $booking['id'] !!})">Edit</button>
-                                        <button class="btn btn-danger" onclick="deleteBooking({!! $booking['id'] !!})">Delete</button>
-                                    </td>
+                                    <th scope="col">#</th>
+                                    <th scope="col">User Name</th>
+                                    <th scope="col">Driver Name</th>
+                                    <th scope="col">From</th>
+                                    <th scope="col">To</th>
+                                    <th scope="col">Action</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </ul>
+                            </thead>
+                            <tbody>
+                                @foreach ($bookings as $key => $booking)
+                                    <tr>
+                                        <th scope="row">{!! ($key + 1) !!}</th>
+                                        <td>{!! $booking['user_name'] !!}</td>
+                                        <td>{!! $booking['driver_name'] !!}</td>
+                                        <td>{!! $booking['location_from'] !!}</td>
+                                        <td>{!! $booking['location_to'] !!}</td>
+                                        <td>
+                                            <button class="btn btn-success" onclick="editBooking({!! $booking['id'] !!})">Edit</button>
+                                            <button class="btn btn-danger" onclick="deleteBooking({!! $booking['id'] !!})">Delete</button>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>

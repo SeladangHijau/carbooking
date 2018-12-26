@@ -1,37 +1,43 @@
 @extends('../layout')
 
 @section('content')
-    <div class="row">
-        <div class="offset-2 col-8">
-            <div class="jumbotron">
-                <h3>Welcome, please select your location.</h3>
+    <div class="content">
+        <div class="row">
+            <div class="offset-2 col-8">
+                <div class="jumbotron">
+                    <div class="row">
+                        <div class="offset-4 col-6">
+                            <h3>Car Booking System</h3>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-
-    <div class="row">
-        <div class="offset-1 col-10">
-            <div class="row">
-                <div class="offset-2 col-8 card">
-                    <div class="form-row card-body">
-                        <div class="col-auto">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">From</span>
+    
+        <div class="row">
+            <div class="offset-1 col-10">
+                <div class="row">
+                    <div class="offset-2 col-8">
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">From</span>
+                                    </div>
+                                    <input type="text" class="mr-sm-2 form-control" id="point_a" aria-label="point_a" aria-describedby="basic-addon1">
                                 </div>
-                                <input type="text" class="form-control" id="point_a" aria-label="point_a" aria-describedby="basic-addon1">
                             </div>
-                        </div>
-                        <div class="col-auto">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">To</span>
+                            <div class="col-5">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">To</span>
+                                    </div>
+                                    <input type="text" class="mr-sm-2 form-control" id="point_b" aria-label="point_b" aria-describedby="basic-addon1">
                                 </div>
-                                <input type="text" class="form-control" id="point_b" aria-label="point_b" aria-describedby="basic-addon1">
                             </div>
-                        </div>
-                        <div class="col-auto">
-                            <button class="btn btn-primary" onclick="getDriver()">Select Driver</button>
+                            <div class="col-2">
+                                <button class="mr-sm-2 btn btn-primary" onclick="getDriver()">Select Driver</button>
+                            </div>
                         </div>
                     </div>
                 </div>

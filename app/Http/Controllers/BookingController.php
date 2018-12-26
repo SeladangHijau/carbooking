@@ -22,10 +22,6 @@ class BookingController extends Controller
         ]);
     }
 
-    public function createBooking() {
-        return view('booking/create');
-    }
-
     public function create(Request $request) {
         $user = [
             'name' => $request['user_name'],
@@ -41,6 +37,8 @@ class BookingController extends Controller
         ];
 
         Booking::saveBooking($user, $driver, $booking);
+        
+        flash('Booking Registered!')->success();
 
         return redirect('/booking');
     }
@@ -54,6 +52,8 @@ class BookingController extends Controller
         ];
 
         Booking::editBooking($booking);
+
+        flash('Booking Edited!')->success();
         
         return redirect('/booking');
     }
@@ -61,6 +61,8 @@ class BookingController extends Controller
     public function delete(Request $request) {
         $booking = [ 'id' => $request['id'] ];
         Booking::deleteBooking($booking);
+
+        flash('Booking Deleted!')->success();
         
         return redirect('/booking');
     }

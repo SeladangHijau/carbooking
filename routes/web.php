@@ -18,7 +18,6 @@ Route::get('/driver/createDriverPage', 'DriverController@createDriverPage');
 Route::get('/driver/getDriverInfo', 'DriverController@getDriverInfo');
 
 Route::get('/booking', 'BookingController@bookingListing');
-Route::get('/booking/createBooking', 'BookingController@createBooking');
 Route::get('/booking/getBookingInfo', 'BookingController@getBookingInfo');
 
 

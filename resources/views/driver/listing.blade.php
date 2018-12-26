@@ -1,48 +1,50 @@
 @extends('../layout')
 
 @section('content')
-    <div class="row">
-        <div class="offset-2 col-8">
-            <div class="jumbotron">
-                <h3>List of Available Drivers</h3>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="offset-2 col-8">
-            <div class="row">
-                <div class="offset-4 col-4">
-                    <div class="form-group">
-                        <a href={!! url('/driver/createDriverPage') !!} class="form-control btn btn-primary">Register New Driver</a>
-                    </div>
+    <div class="content">
+        <div class="row">
+            <div class="offset-2 col-8">
+                <div class="jumbotron">
+                    <h3>List of Available Drivers</h3>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-12">
-                    <table class="table">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Driver Name</th>
-                                <th scope="col">Car Model</th>
-                                <th scope="col">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($drivers as $key => $driver)
+        </div>
+    
+        <div class="row">
+            <div class="offset-2 col-8">
+                <div class="row">
+                    <div class="offset-4 col-4">
+                        <div class="form-group">
+                            <a href={!! url('/driver/createDriverPage') !!} class="form-control btn btn-primary">Register New Driver</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <table class="table">
+                            <thead class="thead-dark">
                                 <tr>
-                                    <th scope="row">{!! $key + 1 !!}</th>
-                                    <td>{!! $driver->name !!}</td>
-                                    <td>{!! $driver->car_model !!}</td>
-                                    <td>
-                                        <button class="btn btn-success" onclick="editDriver({!! $driver->id !!})">Edit</button>
-                                        <button class="btn btn-danger" onclick="deleteDriver({!! $driver->id !!})">Delete</button>
-                                    </td>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Driver Name</th>
+                                    <th scope="col">Car Model</th>
+                                    <th scope="col">Action</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </ul>
+                            </thead>
+                            <tbody>
+                                @foreach ($drivers as $key => $driver)
+                                    <tr>
+                                        <th scope="row">{!! $key + 1 !!}</th>
+                                        <td>{!! $driver->name !!}</td>
+                                        <td>{!! $driver->car_model !!}</td>
+                                        <td>
+                                            <button class="btn btn-success" onclick="editDriver({!! $driver->id !!})">Edit</button>
+                                            <button class="btn btn-danger" onclick="deleteDriver({!! $driver->id !!})">Delete</button>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>

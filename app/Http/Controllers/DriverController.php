@@ -30,6 +30,8 @@ class DriverController extends Controller
         ];
         
         Driver::saveDriver($driver, $car);
+        
+        flash('Driver Registered!')->success();
 
         return redirect('/driver');
     }
@@ -56,12 +58,16 @@ class DriverController extends Controller
 
         Driver::editDriver($driver, $car);
         
+        flash('Driver Edited!')->success();
+        
         return redirect('/driver');
     }
     
     public function delete(Request $request) {
         $driver = [ 'id' => $request['id'] ];
         Driver::deleteDriver($driver);
+        
+        flash('Driver Deleted!')->success();
         
         return redirect('/driver');
     }
