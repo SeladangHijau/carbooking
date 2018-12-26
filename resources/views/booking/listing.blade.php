@@ -80,11 +80,11 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="location_from">Location from</label>
-                                        <input id="location_from" id="location_from" minlength="3" name="location_from" type="text" class="form-control" placeholder="Location From" value="" required/>
+                                        <input id="location_from" id="location_from" name="location_from" type="text" class="form-control" placeholder="Location From" value="" required/>
                                     </div>
                                     <div class="form-group">
                                         <label for="location_to">Location To</label>
-                                        <input id="location_to" id="location_to" minlength="3" name="location_to" type="text" class="form-control" placeholder="Location To" value="" required/>
+                                        <input id="location_to" id="location_to" name="location_to" type="text" class="form-control" placeholder="Location To" value="" required/>
                                     </div>
                                 </div>
                             </div>
