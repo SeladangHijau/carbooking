@@ -39,8 +39,12 @@
                                     <td>{!! $booking['location_from'] !!}</td>
                                     <td>{!! $booking['location_to'] !!}</td>
                                     <td>
-                                        <button class="btn btn-success" onclick="editBooking({!! $booking['id'] !!})">Edit</button>
-                                        <button class="btn btn-danger" onclick="deleteBooking({!! $booking['id'] !!})">Delete</button>
+                                        <div class="form-group">
+                                            <button class="btn btn-success form-control" onclick="editBooking({!! $booking['id'] !!})">Edit</button>
+                                        </div>
+                                        <div class="form-group">
+                                            <button class="btn btn-danger form-control" onclick="deleteBooking({!! $booking['id'] !!})">Delete</button>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach

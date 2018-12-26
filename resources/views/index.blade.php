@@ -8,16 +8,22 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-5">
-                <input type="text" class="form-control" id="point_a" placeholder="From" />
-            </div>
-            <div class="col-md-5">
-                <input type="text" class="form-control" id="point_b" placeholder="To" />
-            </div>
-            
-            <div class="col-md-2 text-center">
-                <button class="btn btn-primary" onclick="getDriver()">Select Driver</button>
-            </div>
+            <form id="locationForm col-md-12">
+                <div class="row">
+                    <div class="col-md-4 form-group">
+                        <input type="text" class="form-control" minlength="3" id="point_a" placeholder="From" required/>
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <input type="text" class="form-control" minlength="3" id="point_b" placeholder="To" required/>
+                    </div>
+                    
+                    <div class="offset-md-1 col-md-3 text-center">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary form-control">Search Driver</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -83,6 +89,11 @@
         const createUser = $('#createUser');
         const findDriver = $('#findDriver');
 
+        $('#locationForm').validate({
+            submitHandler: function(form) {
+                getDriver();
+            }
+        });
         $('#createUserForm').validate();
 
         function registerUser(driverId) {
