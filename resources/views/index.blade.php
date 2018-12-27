@@ -1,30 +1,29 @@
 @extends('../layout')
 
 @section('content')
-    <div class="content">
+    <div class="content text-center">
         <div class="row">
             <div class="offset-md-2 col-md-8 text-center">
                 <h3>Car Booking System</h3>
             </div>
         </div>
         <div class="row">
-            <form id="locationForm col-md-12">
-                <div class="row">
-                    <div class="col-md-4 form-group">
-                        <input type="text" class="form-control" minlength="3" id="point_a" placeholder="From" required/>
-                    </div>
-                    <div class="col-md-4 form-group">
-                        <input type="text" class="form-control" minlength="3" id="point_b" placeholder="To" required/>
-                    </div>
-                    
-                    <div class="offset-md-1 col-md-3 text-center">
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary form-control">Search Driver</button>
-                        </div>
-                    </div>
-                </div>
-            </form>
+            <div class="col-md-5 form-group">
+                <input type="text" autocomplete="off" class="form-control" id="point_a" placeholder="From" required/>
+            </div>
+            <div class="col-md-5 form-group">
+                <input type="text" autocomplete="off" class="form-control" id="point_b" placeholder="To" required/>
+            </div>
+            
+            <div class="col-md-2 text-center">
+                <button class="btn btn-primary" onclick="getDriver()">Search Driver</button>
+            </div>
         </div>
+        {{-- <div class="row">
+            <div class="col-md-12">
+                <div id="map"></div>
+            </div>
+        </div> --}}
     </div>
 
     <div class="modal fade" id="createUser" tabindex="-1" role="dialog" aria-labelledby="createUser" aria-hidden="true">
@@ -89,12 +88,43 @@
         const createUser = $('#createUser');
         const findDriver = $('#findDriver');
 
-        $('#locationForm').validate({
-            submitHandler: function(form) {
-                getDriver();
-            }
+        var pointA = new kt.OsmNamesAutocomplete('point_a', 'https://geocoder.tilehosting.com/', 'iUdDIWV71qb1gQngv5zi');
+        var pointB = new kt.OsmNamesAutocomplete('point_b', 'https://geocoder.tilehosting.com/', 'iUdDIWV71qb1gQngv5zi');
+        
+        pointA.registerCallback(function(item) {
+            $('#point_a').val(item.display_name);
         });
+        pointB.registerCallback(function(item) {
+            $('#point_b').val(item.display_name);
+        });
+        
+        // mapboxgl.accessToken = 'pk.eyJ1IjoibmFkem1paWR6aGFtIiwiYSI6ImNqcTR6ZXYxajF6OGQzeXNiNTNxcHJhcnQifQ.VLkTzcf-EJiqK6de86fhDw';
+        // var map = new mapboxgl.Map({
+        //     container: 'map',
+        //     style: 'https://maps.tilehosting.com/styles/basic/style.json?key=KrAZ6wiVL688i2u7nJs6',
+        //     center: [101.65001, 2.91596],
+        //     zoom: 10
+        // });
+        
+        // var geojson = [];
+        // map.on('click', function (e) {
+        //     geojson.push({
+        //         type: 'Feature',
+        //         geometry: {
+        //             type: 'Point',
+        //             coordinates: [e.lngLat.lat, e.lngLat.lng]
+        //         }
+        //     });
+        // });
+
         $('#createUserForm').validate();
+
+        // pointA.registerCallback(function(item) {
+        //     console.log(item);
+        // });
+        // pointB.registerCallback(function(item) {
+        //     console.log(item);
+        // });
 
         function registerUser(driverId) {
             var pointA = $('#point_a');

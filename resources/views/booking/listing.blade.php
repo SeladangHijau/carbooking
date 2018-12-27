@@ -127,6 +127,9 @@
         const editModal = $('#editModal');
         const deleteModal = $('#deleteModal');
 
+        var pointA = new kt.OsmNamesAutocomplete('location_from', 'https://geocoder.tilehosting.com/', 'iUdDIWV71qb1gQngv5zi');
+        var pointB = new kt.OsmNamesAutocomplete('location_to', 'https://geocoder.tilehosting.com/', 'iUdDIWV71qb1gQngv5zi');
+
         $('#editDriverForm').validate();
 
         setInterval(function() {

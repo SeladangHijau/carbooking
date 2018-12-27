@@ -36,11 +36,17 @@ class BookingController extends Controller
             'point_b' => $request['booking_pointB']
         ];
 
+        if($booking['point_a'] == '' || $booking['point_b'] == '') {
+            flash('Please select location!')->error();
+
+            return redirect('/');
+        }
+
         Booking::saveBooking($user, $driver, $booking);
         
         flash('Booking Registered!')->success();
 
-        return redirect('/booking');
+        return redirect('/');
     }
 
     public function edit(Request $request) {
